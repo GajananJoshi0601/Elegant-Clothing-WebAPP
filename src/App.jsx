@@ -67,12 +67,15 @@ function App() {
     });
   }
 
+  const ctxValue = {
+    items: shoppingCart.items,
+    addItemToCart: handleAddItemToCart,
+    updatedItemQuantity: handleUpdateCartItemQuantity
+  }
+
   return (
-    <CartContext value={{items: []}}>
-      <Header
-        cart={shoppingCart}
-        onUpdateCartItemQuantity={handleUpdateCartItemQuantity}
-      />
+    <CartContext value={ctxValue}>
+      <Header/>
 
     {/* Component composition : On here we are just passing the reference to the component from the app to shop by using this handleAddItemToCart 
     method rather than that we can also directly pass that original code into it so it will be less messy than  */}
@@ -80,7 +83,7 @@ function App() {
       <Shop onAddItemToCart={handleAddItemToCart}> 
         {DUMMY_PRODUCTS.map((product) => (
           <li key={product.id}>
-            <Product {...product} onAddToCart={handleAddItemToCart} />
+            <Product {...product} />
           </li>
         ))}  
       </Shop>
