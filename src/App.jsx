@@ -6,7 +6,15 @@ import Product from './components/Product.jsx'
 import { DUMMY_PRODUCTS } from './dummy-products.js';
 import { CartContext } from './store/shopping-cart-context.jsx';
 
+
+function shoppingCartReducer(state, action){
+
+}
+
 function App() {
+
+  const [ shoppingCartState, shoppingCartDispatch ] = useReducer();
+
   const [shoppingCart, setShoppingCart] = useState({
     items: [],
   });
