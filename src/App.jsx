@@ -8,18 +8,28 @@ import { CartContext } from './store/shopping-cart-context.jsx';
 
 
 function shoppingCartReducer(state, action){
-
+    return state;
 }
 
 function App() {
 
-  const [ shoppingCartState, shoppingCartDispatch ] = useReducer();
+  const [ shoppingCartState, shoppingCartDispatch ] = useReducer(shoppingCartReducer, 
+    {
+      items: [],
+    }
+  );
 
   const [shoppingCart, setShoppingCart] = useState({
     items: [],
   });
 
   function handleAddItemToCart(id) {
+
+    shoppingCartDispatch({
+      type: 'ADD_ITEM',
+      payload: id
+    });
+
     setShoppingCart((prevShoppingCart) => {
       const updatedItems = [...prevShoppingCart.items];
 
@@ -76,7 +86,7 @@ function App() {
   }
 
   const ctxValue = {
-    items: shoppingCart.items,
+    items: shoppingCartState.items,
     addItemToCart: handleAddItemToCart,
     updatedItemQuantity: handleUpdateCartItemQuantity
   }
