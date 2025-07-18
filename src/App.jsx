@@ -8,6 +8,10 @@ import { CartContext } from './store/shopping-cart-context.jsx';
 
 
 function shoppingCartReducer(state, action){
+   if(action.type === 'ADD_ITEM'){
+    return;
+   }
+
     return state;
 }
 
@@ -24,7 +28,6 @@ function App() {
   });
 
   function handleAddItemToCart(id) {
-
     shoppingCartDispatch({
       type: 'ADD_ITEM',
       payload: id
